@@ -1,7 +1,10 @@
 package com.yourname.githubreport.service;
 
 import com.yourname.githubreport.client.GitHubApiClient;
-import com.yourname.githubreport.model.*;
+import com.yourname.githubreport.model.Repository;
+import com.yourname.githubreport.model.RepositoryAccess;
+import com.yourname.githubreport.model.User;
+import com.yourname.githubreport.model.UserAccessMapping;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,10 +12,17 @@ import org.springframework.stereotype.Service;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Comparator;
+import java.util.List;
+import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.stream.Collectors;
 
+/**
+ * Core service that builds a user-to-repository access map for a GitHub organization.
+ * It fetches both direct (collaborator/contributor) and team-based access in parallel.
+ */
 @Service
 public class GitHubService {
 

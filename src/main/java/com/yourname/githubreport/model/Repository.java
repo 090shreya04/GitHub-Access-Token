@@ -6,6 +6,9 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+/**
+ * Represents a GitHub repository returned by the GitHub API.
+ */
 @Data
 @Builder
 @NoArgsConstructor
@@ -13,7 +16,7 @@ import lombok.NoArgsConstructor;
 public class Repository {
     private Long id;
     private String name;
-    
+
     @JsonProperty("full_name")
     private String fullName;
 }
